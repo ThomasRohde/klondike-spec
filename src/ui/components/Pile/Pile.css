@@ -1,0 +1,103 @@
+.pile {
+    position: relative;
+    min-width: 80px;
+    min-height: 112px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pile--spread {
+    /* Cards spread vertically - height computed dynamically */
+    min-height: 300px;
+}
+
+.pile--spread .card {
+    position: absolute;
+    top: calc(var(--stack-offset, 0) * 1px);
+    left: 0;
+}
+
+.pile__placeholder {
+    width: 80px;
+    height: 112px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.pile--drag-over .pile__placeholder,
+.pile--drag-over .card:last-child img {
+    box-shadow: 0 0 0 3px #4ade80;
+}
+
+.pile--foundation .pile__placeholder {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.pile--foundation .pile__placeholder::after {
+    content: '♠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.pile--foundation:nth-child(1) .pile__placeholder::after {
+    content: '♥';
+    color: rgba(220, 38, 38, 0.3);
+}
+
+.pile--foundation:nth-child(2) .pile__placeholder::after {
+    content: '♦';
+    color: rgba(220, 38, 38, 0.3);
+}
+
+.pile--foundation:nth-child(3) .pile__placeholder::after {
+    content: '♣';
+}
+
+.pile--foundation:nth-child(4) .pile__placeholder::after {
+    content: '♠';
+}
+
+/* Non-spread piles show only top card */
+.pile:not(.pile--spread) .card:not(:last-child) {
+    display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .pile {
+        min-width: 60px;
+        min-height: 84px;
+    }
+
+    .pile__placeholder {
+        width: 60px;
+        height: 84px;
+        border-radius: 4px;
+    }
+
+    .pile--foundation .pile__placeholder::after {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pile {
+        min-width: 48px;
+        min-height: 67px;
+    }
+
+    .pile__placeholder {
+        width: 48px;
+        height: 67px;
+        border-radius: 3px;
+    }
+
+    .pile--foundation .pile__placeholder::after {
+        font-size: 18px;
+    }
+}

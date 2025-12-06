@@ -1,0 +1,109 @@
+.help-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a5f2a 0%, #0d3d17 100%);
+    padding: 24px;
+    color: white;
+}
+
+.help-page__header {
+    max-width: 700px;
+    margin: 0 auto 32px;
+}
+
+.help-page__back {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+    transition: color 0.15s ease;
+}
+
+.help-page__back:hover {
+    color: white;
+}
+
+.help-page__header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.help-page__content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.help-page__section {
+    margin-bottom: 32px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.help-page__section h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    color: #ffd700;
+}
+
+.help-page__section p {
+    margin: 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.help-page__section ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.help-page__section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.help-page__section li strong {
+    color: white;
+}
+
+.help-page__cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.help-page__play-button {
+    display: inline-block;
+    padding: 16px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #ffd700;
+    color: #1a5f2a;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+}
+
+.help-page__play-button:hover {
+    background: #ffed4a;
+    transform: translateY(-2px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .help-page {
+        padding: 16px;
+    }
+
+    .help-page__header h1 {
+        font-size: 22px;
+    }
+
+    .help-page__section {
+        padding: 16px;
+    }
+
+    .help-page__section h2 {
+        font-size: 18px;
+    }
+}

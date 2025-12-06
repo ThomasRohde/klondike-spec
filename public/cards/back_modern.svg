@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 112">
+    <defs>
+        <pattern id="hexPattern" x="0" y="0" width="12" height="10.4" patternUnits="userSpaceOnUse">
+            <rect width="12" height="10.4" fill="#166534" />
+            <polygon points="6,0 12,2.6 12,7.8 6,10.4 0,7.8 0,2.6" fill="none" stroke="#22c55e"
+                stroke-width="0.5" opacity="0.4" />
+        </pattern>
+        <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#166534" />
+            <stop offset="50%" style="stop-color:#15803d" />
+            <stop offset="100%" style="stop-color:#166534" />
+        </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="80" height="112" rx="6" ry="6" fill="url(#greenGrad)" />
+    <rect x="3" y="3" width="74" height="106" rx="5" ry="5" fill="none" stroke="#22c55e"
+        stroke-width="1" opacity="0.6" />
+    <rect x="6" y="6" width="68" height="100" rx="4" ry="4" fill="url(#hexPattern)" />
+    <g opacity="0.3">
+        <line x1="10" y1="10" x2="70" y2="102" stroke="#4ade80" stroke-width="0.5" />
+        <line x1="70" y1="10" x2="10" y2="102" stroke="#4ade80" stroke-width="0.5" />
+        <line x1="40" y1="6" x2="40" y2="106" stroke="#4ade80" stroke-width="0.5" />
+        <line x1="6" y1="56" x2="74" y2="56" stroke="#4ade80" stroke-width="0.5" />
+    </g>
+    <polygon points="40,20 55,56 40,92 25,56" fill="none" stroke="#86efac" stroke-width="1.5"
+        opacity="0.7" />
+    <polygon points="40,30 48,56 40,82 32,56" fill="none" stroke="#bbf7d0" stroke-width="1"
+        opacity="0.8" />
+    <circle cx="40" cy="56" r="8" fill="none" stroke="#dcfce7" stroke-width="1.5" opacity="0.6" />
+    <circle cx="40" cy="56" r="3" fill="#dcfce7" opacity="0.8" />
+    <circle cx="40" cy="20" r="2" fill="#86efac" opacity="0.6" />
+    <circle cx="40" cy="92" r="2" fill="#86efac" opacity="0.6" />
+    <circle cx="25" cy="56" r="2" fill="#86efac" opacity="0.6" />
+    <circle cx="55" cy="56" r="2" fill="#86efac" opacity="0.6" />
+</svg>

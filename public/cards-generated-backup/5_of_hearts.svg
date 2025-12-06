@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 112">
+    <defs>
+        <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.1" />
+        </filter>
+    </defs>
+    <rect x="1" y="1" width="78" height="110" rx="6" ry="6" fill="#fffef7" stroke="#d4d4d4"
+        stroke-width="1" filter="url(#shadow)" />
+    <text x="6" y="16" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#dc2626">
+        5</text>
+    <path d="M6 19 L9 26 L12 19 M8 23 L10 23" stroke="#dc2626" stroke-width="1.2" fill="none"
+        stroke-linecap="round" />
+    <g transform="rotate(180, 40, 56)">
+        <text x="6" y="16" font-family="Georgia, serif" font-size="12" font-weight="bold"
+            fill="#dc2626">5</text>
+        <path d="M6 19 L9 26 L12 19 M8 23 L10 23" stroke="#dc2626" stroke-width="1.2" fill="none"
+            stroke-linecap="round" />
+    </g>
+    <path d="M28 26 C28 26 35 33 35 38 C35 43 31 46 28 49 C25 46 21 43 21 38 C21 33 28 26 28 26 Z"
+        fill="#dc2626" />
+    <path d="M52 26 C52 26 59 33 59 38 C59 43 55 46 52 49 C49 46 45 43 45 38 C45 33 52 26 52 26 Z"
+        fill="#dc2626" />
+    <path d="M40 47 C40 47 47 54 47 59 C47 64 43 67 40 70 C37 67 33 64 33 59 C33 54 40 47 40 47 Z"
+        fill="#dc2626" />
+    <g transform="rotate(180, 40, 56)">
+        <path
+            d="M28 26 C28 26 35 33 35 38 C35 43 31 46 28 49 C25 46 21 43 21 38 C21 33 28 26 28 26 Z"
+            fill="#dc2626" />
+        <path
+            d="M52 26 C52 26 59 33 59 38 C59 43 55 46 52 49 C49 46 45 43 45 38 C45 33 52 26 52 26 Z"
+            fill="#dc2626" />
+    </g>
+</svg>

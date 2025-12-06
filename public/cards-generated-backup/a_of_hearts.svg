@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 112">
+    <defs>
+        <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.1" />
+        </filter>
+    </defs>
+    <rect x="1" y="1" width="78" height="110" rx="6" ry="6" fill="#fffef7" stroke="#d4d4d4"
+        stroke-width="1" filter="url(#shadow)" />
+    <text x="6" y="16" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#dc2626">
+        A</text>
+    <path d="M6 19 L9 26 L12 19 M8 23 L10 23" stroke="#dc2626" stroke-width="1.2" fill="none"
+        stroke-linecap="round" />
+    <g transform="rotate(180, 40, 56)">
+        <text x="6" y="16" font-family="Georgia, serif" font-size="12" font-weight="bold"
+            fill="#dc2626">A</text>
+        <path d="M6 19 L9 26 L12 19 M8 23 L10 23" stroke="#dc2626" stroke-width="1.2" fill="none"
+            stroke-linecap="round" />
+    </g>
+    <path d="M40 30 C40 30 52 42 52 52 C52 62 44 68 40 74 C36 68 28 62 28 52 C28 42 40 30 40 30 Z"
+        fill="#dc2626" />
+</svg>

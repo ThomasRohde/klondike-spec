@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 112">
+    <defs>
+        <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.1" />
+        </filter>
+    </defs>
+    <rect x="1" y="1" width="78" height="110" rx="6" ry="6" fill="#fffef7" stroke="#d4d4d4"
+        stroke-width="1" filter="url(#shadow)" />
+    <text x="6" y="16" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#dc2626">
+        3</text>
+    <path d="M6 19 L9 26 L12 19 M8 23 L10 23" stroke="#dc2626" stroke-width="1.2" fill="none"
+        stroke-linecap="round" />
+    <g transform="rotate(180, 40, 56)">
+        <text x="6" y="16" font-family="Georgia, serif" font-size="12" font-weight="bold"
+            fill="#dc2626">3</text>
+        <path d="M6 19 L9 26 L12 19 M8 23 L10 23" stroke="#dc2626" stroke-width="1.2" fill="none"
+            stroke-linecap="round" />
+    </g>
+    <path d="M40 22 C40 22 47 29 47 34 C47 39 43 42 40 45 C37 42 33 39 33 34 C33 29 40 22 40 22 Z"
+        fill="#dc2626" />
+    <path d="M40 45 C40 45 47 52 47 57 C47 62 43 65 40 68 C37 65 33 62 33 57 C33 52 40 45 40 45 Z"
+        fill="#dc2626" />
+    <g transform="rotate(180, 40, 56)">
+        <path
+            d="M40 22 C40 22 47 29 47 34 C47 39 43 42 40 45 C37 42 33 39 33 34 C33 29 40 22 40 22 Z"
+            fill="#dc2626" />
+    </g>
+</svg>

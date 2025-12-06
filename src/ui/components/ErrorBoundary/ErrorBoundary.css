@@ -1,0 +1,100 @@
+.error-boundary {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 2rem;
+}
+
+.error-boundary__content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.error-boundary__title {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+    color: #fff;
+}
+
+.error-boundary__message {
+    font-size: 1.25rem;
+    color: #e0e0e0;
+    margin: 0 0 0.5rem;
+}
+
+.error-boundary__details {
+    font-size: 0.9rem;
+    color: #ff6b6b;
+    margin: 0 0 2rem;
+    font-family: monospace;
+    word-break: break-word;
+}
+
+.error-boundary__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-boundary__button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.error-boundary__button--primary {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+}
+
+.error-boundary__button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.error-boundary__button--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.error-boundary__button--secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.error-boundary__stack {
+    margin-top: 2rem;
+    text-align: left;
+    color: #999;
+    font-size: 0.75rem;
+}
+
+.error-boundary__stack summary {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.error-boundary__stack pre {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.7rem;
+    line-height: 1.4;
+}

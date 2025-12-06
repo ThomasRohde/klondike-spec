@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 112">
+    <defs>
+        <pattern id="diamondPattern" x="0" y="0" width="10" height="10"
+            patternUnits="userSpaceOnUse">
+            <rect width="10" height="10" fill="#1e40af" />
+            <path d="M5 0L10 5L5 10L0 5Z" fill="#2563eb" opacity="0.6" />
+            <circle cx="5" cy="5" r="1.5" fill="#3b82f6" opacity="0.8" />
+        </pattern>
+        <pattern id="borderPattern" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+            <rect width="8" height="8" fill="#1e3a8a" />
+            <circle cx="4" cy="4" r="2" fill="#3b82f6" opacity="0.5" />
+        </pattern>
+    </defs>
+    <rect x="0" y="0" width="80" height="112" rx="6" ry="6" fill="#1e40af" />
+    <rect x="4" y="4" width="72" height="104" rx="4" ry="4" fill="url(#borderPattern)" />
+    <rect x="8" y="8" width="64" height="96" rx="3" ry="3" fill="url(#diamondPattern)" />
+    <rect x="8" y="8" width="64" height="96" rx="3" ry="3" fill="none" stroke="#93c5fd"
+        stroke-width="1" opacity="0.5" />
+    <ellipse cx="40" cy="56" rx="20" ry="28" fill="#1e3a8a" opacity="0.6" />
+    <ellipse cx="40" cy="56" rx="16" ry="24" fill="none" stroke="#60a5fa" stroke-width="1.5"
+        opacity="0.7" />
+    <path d="M40 36L44 44L40 52L36 44Z" fill="#93c5fd" opacity="0.8" />
+    <path d="M40 60L44 68L40 76L36 68Z" fill="#93c5fd" opacity="0.8" />
+    <circle cx="40" cy="56" r="4" fill="#bfdbfe" opacity="0.9" />
+</svg>

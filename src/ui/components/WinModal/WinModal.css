@@ -1,0 +1,155 @@
+.win-modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.win-modal {
+    background: linear-gradient(135deg, #1a5f2a 0%, #0d3d17 100%);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.win-modal__celebration {
+    font-size: 64px;
+    margin-bottom: 16px;
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.win-modal__title {
+    margin: 0 0 8px;
+    color: #ffd700;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.win-modal__subtitle {
+    margin: 0 0 24px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+}
+
+.win-modal__stats {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.win-modal__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.win-modal__stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+.win-modal__stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.win-modal__button {
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #ffd700;
+    color: #1a5f2a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.win-modal__button:hover {
+    background: #ffed4a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
+}
+
+.win-modal__button:active {
+    transform: translateY(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .win-modal {
+        padding: 28px;
+        margin: 16px;
+    }
+
+    .win-modal__celebration {
+        font-size: 48px;
+    }
+
+    .win-modal__title {
+        font-size: 24px;
+    }
+
+    .win-modal__subtitle {
+        font-size: 16px;
+    }
+
+    .win-modal__stats {
+        gap: 24px;
+    }
+
+    .win-modal__stat-value {
+        font-size: 24px;
+    }
+}

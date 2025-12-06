@@ -1,0 +1,130 @@
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #1a5f2a 0%, #0d3015 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+    animation: slideUp 0.4s ease-out;
+    max-width: calc(100vw - 40px);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.install-prompt__content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.install-prompt__icon {
+    font-size: 32px;
+}
+
+.install-prompt__text {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.install-prompt__text strong {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.install-prompt__text span {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.install-prompt__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.install-prompt__button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.install-prompt__button--dismiss {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.install-prompt__button--dismiss:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.install-prompt__button--install {
+    background: white;
+    color: #1a5f2a;
+}
+
+.install-prompt__button--install:hover {
+    background: #f0f0f0;
+    transform: scale(1.02);
+}
+
+.install-prompt__button--install:active {
+    transform: scale(0.98);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .install-prompt {
+        left: 10px;
+        right: 10px;
+        transform: none;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .install-prompt__content {
+        flex-direction: column;
+    }
+
+    .install-prompt__actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .install-prompt__button {
+        flex: 1;
+    }
+}

@@ -1,0 +1,25 @@
+Vector Playing Cards
+====================
+
+Card face SVG images downloaded from:
+https://github.com/notpeter/Vector-Playing-Cards
+
+Original source: Byron Knoll
+https://code.google.com/p/vector-playing-cards/
+
+License: Public Domain / WTFPL
+(Do What The F*** You Want To Public License)
+
+These images are released into the public domain or optionally licensed 
+under the WTFPL in jurisdictions where the public domain is not a 
+recognized legal concept. Either way, do as you see fit: relicense, 
+embed in commercial, non-commercial or open-source software, etc.
+
+---
+
+Card Back Designs
+=================
+
+The card back designs (back_classic.svg, back_modern.svg) were generated
+for this project and are included under the same MIT license as the
+rest of this repository.

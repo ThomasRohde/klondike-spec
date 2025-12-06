@@ -1,0 +1,780 @@
+{
+    "projectName": "klondike-spec",
+    "version": "0.1.0",
+    "features": [
+        {
+            "id": "F001",
+            "category": "infrastructure",
+            "priority": 1,
+            "description": "Vite + React + TypeScript project setup with ESLint/Prettier",
+            "acceptanceCriteria": [
+                "Project builds without errors using `npm run build`",
+                "ESLint and Prettier are configured and pass on all files",
+                "TypeScript strict mode is enabled"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T09:15:00.000Z",
+            "verifiedBy": "agent-session-2",
+            "status": "verified"
+        },
+        {
+            "id": "F002",
+            "category": "core",
+            "priority": 1,
+            "description": "Card and deck data models with strong typing",
+            "acceptanceCriteria": [
+                "Card type includes suit, rank, faceUp state",
+                "All 52 cards can be represented",
+                "Type safety prevents invalid card combinations"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F003",
+            "category": "core",
+            "priority": 1,
+            "description": "Deck shuffling with Fisher-Yates algorithm",
+            "acceptanceCriteria": [
+                "Shuffle produces random order",
+                "All 52 cards present after shuffle",
+                "No duplicate cards after shuffle"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F004",
+            "category": "core",
+            "priority": 1,
+            "description": "Initial game deal layout",
+            "acceptanceCriteria": [
+                "7 tableau piles with correct card counts (1-7)",
+                "Only top card of each tableau pile is face up",
+                "Remaining 24 cards in stock pile"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F005",
+            "category": "core",
+            "priority": 1,
+            "description": "Stock pile draw mechanics (draw 1 or draw 3)",
+            "acceptanceCriteria": [
+                "Click on stock draws cards to waste pile",
+                "Draw 1 mode draws single card",
+                "Draw 3 mode draws up to 3 cards",
+                "Empty stock can be reset from waste pile"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F006",
+            "category": "core",
+            "priority": 1,
+            "description": "Tableau pile move validation",
+            "acceptanceCriteria": [
+                "Cards can only be placed on opposite color",
+                "Cards must be one rank lower than target",
+                "Kings can be placed on empty tableau piles",
+                "Multiple face-up cards can be moved together"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F007",
+            "category": "core",
+            "priority": 1,
+            "description": "Foundation pile move validation",
+            "acceptanceCriteria": [
+                "Only aces can start a foundation pile",
+                "Cards must match suit of foundation",
+                "Cards must be one rank higher than top card",
+                "Only single cards can be moved to foundation"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F008",
+            "category": "core",
+            "priority": 1,
+            "description": "Auto-flip face-down cards",
+            "acceptanceCriteria": [
+                "When top card is moved, next card flips face up",
+                "Flip happens automatically after valid move"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F009",
+            "category": "core",
+            "priority": 1,
+            "description": "Win condition detection",
+            "acceptanceCriteria": [
+                "Win detected when all 4 foundations have 13 cards",
+                "Win dialog/animation shown on victory",
+                "Game statistics updated on win"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F010",
+            "category": "core",
+            "priority": 2,
+            "description": "Undo functionality with move history",
+            "acceptanceCriteria": [
+                "Each move is recorded in history",
+                "Undo button reverses last move",
+                "Multiple undos supported",
+                "Undo restores card face states correctly"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F011",
+            "category": "core",
+            "priority": 2,
+            "description": "Move counter tracking",
+            "acceptanceCriteria": [
+                "Counter starts at 0 for new game",
+                "Counter increments on each valid move",
+                "Counter displayed in UI",
+                "Undo decrements counter"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F012",
+            "category": "core",
+            "priority": 2,
+            "description": "Game timer",
+            "acceptanceCriteria": [
+                "Timer starts on first move",
+                "Timer displays in MM:SS format",
+                "Timer pauses when game is won",
+                "Timer resets on new game"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F013",
+            "category": "ui",
+            "priority": 1,
+            "description": "Professional SVG card assets from Vector-Playing-Cards (public domain)",
+            "acceptanceCriteria": [
+                "All 52 card faces available as professional SVG from Vector-Playing-Cards repo",
+                "Cards are high-quality traditional playing card designs with face cards",
+                "Consistent sizing across all cards",
+                "License file included documenting public domain / WTFPL license"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:30:00.000Z",
+            "verifiedBy": "agent-session-3",
+            "status": "verified"
+        },
+        {
+            "id": "F014",
+            "category": "ui",
+            "priority": 1,
+            "description": "Card back designs (2 variants)",
+            "acceptanceCriteria": [
+                "At least 2 card back designs available",
+                "Card backs stored as SVG",
+                "User can select card back in settings"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F015",
+            "category": "ui",
+            "priority": 1,
+            "description": "Responsive game table layout",
+            "acceptanceCriteria": [
+                "Table has felt-like background",
+                "Layout adapts to different screen sizes",
+                "All piles visible without scrolling on desktop",
+                "Mobile-friendly layout on small screens"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F016",
+            "category": "ui",
+            "priority": 1,
+            "description": "Drag and drop card movement",
+            "acceptanceCriteria": [
+                "Cards can be dragged to valid locations",
+                "Visual feedback during drag",
+                "Invalid drops return card to original position",
+                "Touch support for mobile devices"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F017",
+            "category": "ui",
+            "priority": 2,
+            "description": "Click-to-move alternative",
+            "acceptanceCriteria": [
+                "Click on card to select it",
+                "Click on valid destination to move",
+                "Double-click auto-moves to foundation if valid",
+                "Visual indicator for selected card"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F018",
+            "category": "ui",
+            "priority": 2,
+            "description": "Smooth animations",
+            "acceptanceCriteria": [
+                "Card movements are animated",
+                "Card flip animations present",
+                "Win celebration animation",
+                "Animations don't block gameplay"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:12:00.000Z",
+            "verifiedBy": "agent-session-6",
+            "status": "verified"
+        },
+        {
+            "id": "F019",
+            "category": "ui",
+            "priority": 1,
+            "description": "New game button",
+            "acceptanceCriteria": [
+                "Button visible in game UI",
+                "Confirms before abandoning in-progress game",
+                "Starts fresh shuffled game"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F020",
+            "category": "ui",
+            "priority": 2,
+            "description": "Settings panel",
+            "acceptanceCriteria": [
+                "Draw mode toggle (1 or 3 cards)",
+                "Sound on/off toggle (placeholder)",
+                "Card back selection",
+                "Settings persist in localStorage"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F021",
+            "category": "infrastructure",
+            "priority": 1,
+            "description": "Zustand store with Immer integration",
+            "acceptanceCriteria": [
+                "Game state managed by Zustand",
+                "Immer enables immutable updates",
+                "Store actions for all game operations",
+                "State shape is well-typed"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F022",
+            "category": "infrastructure",
+            "priority": 2,
+            "description": "LocalStorage persistence",
+            "acceptanceCriteria": [
+                "Current game saved to localStorage",
+                "Game restored on page reload",
+                "Settings persisted separately",
+                "Graceful handling of corrupted data"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F023",
+            "category": "infrastructure",
+            "priority": 1,
+            "description": "React Router navigation",
+            "acceptanceCriteria": [
+                "Route for menu/home (/)",
+                "Route for game (/game)",
+                "Route for help (/help)",
+                "Navigation works with browser back/forward"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T12:00:00.000Z",
+            "verifiedBy": "playwright-e2e",
+            "status": "verified"
+        },
+        {
+            "id": "F024",
+            "category": "infrastructure",
+            "priority": 2,
+            "description": "PWA configuration with vite-plugin-pwa",
+            "acceptanceCriteria": [
+                "Web app manifest configured",
+                "Service worker registered",
+                "App installable on supported browsers",
+                "Offline support for core views"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:12:00.000Z",
+            "verifiedBy": "agent-session-6",
+            "status": "verified"
+        },
+        {
+            "id": "F025",
+            "category": "testing",
+            "priority": 1,
+            "description": "Vitest setup and configuration",
+            "acceptanceCriteria": [
+                "Vitest configured in project",
+                "Tests run with `npm test`",
+                "Coverage reporting available"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T09:15:00.000Z",
+            "verifiedBy": "agent-session-2",
+            "status": "verified"
+        },
+        {
+            "id": "F026",
+            "category": "testing",
+            "priority": 1,
+            "description": "Unit tests for shuffle logic",
+            "acceptanceCriteria": [
+                "Test verifies 52 cards after shuffle",
+                "Test verifies no duplicates",
+                "Test verifies randomness (different orders)"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T09:15:00.000Z",
+            "verifiedBy": "agent-session-2",
+            "status": "verified"
+        },
+        {
+            "id": "F027",
+            "category": "testing",
+            "priority": 1,
+            "description": "Unit tests for move validation",
+            "acceptanceCriteria": [
+                "Tests for valid tableau moves",
+                "Tests for invalid tableau moves",
+                "Tests for foundation moves",
+                "Tests for edge cases"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T09:15:00.000Z",
+            "verifiedBy": "agent-session-2",
+            "status": "verified"
+        },
+        {
+            "id": "F028",
+            "category": "testing",
+            "priority": 1,
+            "description": "Unit tests for win condition",
+            "acceptanceCriteria": [
+                "Test detects completed game",
+                "Test confirms incomplete game not won",
+                "Test handles edge cases"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T09:15:00.000Z",
+            "verifiedBy": "agent-session-2",
+            "status": "verified"
+        },
+        {
+            "id": "F029",
+            "category": "ui",
+            "priority": 3,
+            "description": "Help page with game rules",
+            "acceptanceCriteria": [
+                "Rules of Klondike explained",
+                "Controls documented",
+                "Accessible from main menu"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F030",
+            "category": "infrastructure",
+            "priority": 3,
+            "description": "Error boundary and graceful error handling",
+            "acceptanceCriteria": [
+                "React error boundary catches render errors",
+                "User-friendly error message displayed",
+                "Option to start new game on error"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:00:00.000Z",
+            "verifiedBy": "agent-session-4",
+            "status": "verified"
+        },
+        {
+            "id": "F031",
+            "category": "infrastructure",
+            "priority": 2,
+            "description": "Professional card asset download script with build-time automation",
+            "acceptanceCriteria": [
+                "Script downloads all 52 card SVGs from Vector-Playing-Cards repo",
+                "Existing cards are backed up before replacement",
+                "Script can be run via `npx tsx scripts/download-pro-cards.ts`",
+                "Downloaded assets match project naming convention"
+            ],
+            "passes": true,
+            "verifiedAt": "2025-12-05T10:30:00.000Z",
+            "verifiedBy": "agent-session-3",
+            "status": "verified"
+        },
+        {
+            "id": "F032",
+            "category": "ui",
+            "priority": 2,
+            "description": "PWA install prompt UI component",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "Install banner/button appears when app is installable",
+                "User can dismiss the install prompt",
+                "Prompt does not reappear after dismissal for 7 days",
+                "Install button triggers browser's native install dialog",
+                "Banner hides automatically after successful installation"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:45:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F033",
+            "category": "ui",
+            "priority": 2,
+            "description": "Offline status indicator",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "Visual indicator shows when app is offline",
+                "Indicator appears/disappears based on network status",
+                "User is informed that game progress is saved locally",
+                "Indicator does not block gameplay"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:40:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F034",
+            "category": "ui",
+            "priority": 2,
+            "description": "PWA update available notification",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "Notification appears when new version is available",
+                "User can click to refresh and update the app",
+                "User can dismiss and continue with current version",
+                "Update applies after page refresh"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:46:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F035",
+            "category": "infrastructure",
+            "priority": 3,
+            "description": "PWA app shortcuts for quick actions",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "App manifest includes shortcuts array",
+                "New Game shortcut launches directly to new game",
+                "Continue Game shortcut resumes last saved game",
+                "Shortcuts appear in OS app context menu (right-click icon)"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:32:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F036",
+            "category": "infrastructure",
+            "priority": 3,
+            "description": "Enhanced iOS PWA support",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "Apple touch icon configured correctly",
+                "Apple mobile web app capable meta tags present",
+                "Status bar style configured for iOS",
+                "Splash screen images configured for iOS devices",
+                "App name displays correctly on iOS home screen"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:35:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F037",
+            "category": "infrastructure",
+            "priority": 3,
+            "description": "Service worker lifecycle management",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "Service worker updates are handled gracefully",
+                "User is not disrupted during SW update",
+                "Stale cache is cleaned up after update",
+                "Console logs SW registration status in development"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:46:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F038",
+            "category": "infrastructure",
+            "priority": 4,
+            "description": "PWA analytics and install tracking",
+            "dependencies": [
+                "F032"
+            ],
+            "acceptanceCriteria": [
+                "App tracks when install prompt is shown (console log)",
+                "App tracks when user accepts/dismisses install",
+                "App detects if running in standalone mode",
+                "Display mode is logged for debugging purposes"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:47:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F039",
+            "category": "ui",
+            "priority": 4,
+            "description": "PWA standalone mode UI adjustments",
+            "dependencies": [
+                "F024"
+            ],
+            "acceptanceCriteria": [
+                "App detects when running in standalone/installed mode",
+                "Navigation adjusts for standalone mode (no browser chrome)",
+                "Safe area insets handled for notched devices",
+                "Back navigation works correctly in standalone mode"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T16:48:00.000Z",
+            "verifiedBy": "agent-session-8",
+            "status": "verified"
+        },
+        {
+            "id": "F040",
+            "category": "infrastructure",
+            "priority": 1,
+            "description": "GitHub Pages deployment configuration with correct base URL",
+            "dependencies": [
+                "F001"
+            ],
+            "acceptanceCriteria": [
+                "Vite config includes base path '/klondike-spec/' for GitHub Pages project site",
+                "All asset paths resolve correctly with base path prefix",
+                "PWA manifest start_url and scope configured for /klondike-spec/ path",
+                "Production build works locally with 'npm run preview'"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T17:25:00.000Z",
+            "verifiedBy": "agent-session-11",
+            "status": "verified"
+        },
+        {
+            "id": "F041",
+            "category": "infrastructure",
+            "priority": 1,
+            "description": "GitHub Actions workflow for automated deployment",
+            "dependencies": [
+                "F040"
+            ],
+            "acceptanceCriteria": [
+                "Workflow file exists at .github/workflows/deploy.yml",
+                "Workflow triggers on push to main branch",
+                "Workflow runs npm install, build, and deploys to gh-pages",
+                "Uses GitHub Pages action for deployment",
+                "Build artifacts include all PWA assets"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T17:23:00.000Z",
+            "verifiedBy": "agent-session-11",
+            "status": "verified"
+        },
+        {
+            "id": "F042",
+            "category": "infrastructure",
+            "priority": 2,
+            "description": "SPA routing support for GitHub Pages (404.html redirect)",
+            "dependencies": [
+                "F040",
+                "F023"
+            ],
+            "acceptanceCriteria": [
+                "404.html file redirects to index.html with path preserved",
+                "index.html handles the redirect and restores correct route",
+                "Direct navigation to /klondike-spec/game works correctly",
+                "Browser back/forward navigation works after redirect"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T17:22:00.000Z",
+            "verifiedBy": "agent-session-11",
+            "status": "verified"
+        },
+        {
+            "id": "F043",
+            "category": "infrastructure",
+            "priority": 2,
+            "description": "Router configuration for GitHub Pages base path",
+            "dependencies": [
+                "F023",
+                "F040"
+            ],
+            "acceptanceCriteria": [
+                "React Router basename configured to '/klondike-spec'",
+                "All internal links work correctly with base path",
+                "Navigation between home, game, and help pages works",
+                "URL shows correct path (e.g., /klondike-spec/game not just /game)"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T17:20:00.000Z",
+            "verifiedBy": "agent-session-11",
+            "status": "verified"
+        },
+        {
+            "id": "F044",
+            "category": "testing",
+            "priority": 3,
+            "description": "Production deployment verification tests",
+            "dependencies": [
+                "F040",
+                "F041"
+            ],
+            "acceptanceCriteria": [
+                "Smoke test verifies https://thomasrohde.github.io/klondike-spec/ loads",
+                "Test confirms game page is accessible at /klondike-spec/game",
+                "Test verifies PWA manifest is served correctly",
+                "Test confirms all card assets load from correct paths"
+            ],
+            "estimatedEffort": "medium",
+            "passes": true,
+            "verifiedAt": "2025-12-05T18:00:00.000Z",
+            "verifiedBy": "agent-session-12-manual",
+            "status": "verified"
+        },
+        {
+            "id": "F045",
+            "category": "docs",
+            "priority": 3,
+            "description": "Deployment documentation in README",
+            "dependencies": [
+                "F041"
+            ],
+            "acceptanceCriteria": [
+                "README includes deployment section with GitHub Pages URL",
+                "Instructions for manual deployment if needed",
+                "Notes about automatic deployment on push to main",
+                "Link to live demo in README header"
+            ],
+            "estimatedEffort": "small",
+            "passes": true,
+            "verifiedAt": "2025-12-05T17:24:00.000Z",
+            "verifiedBy": "agent-session-11",
+            "status": "verified"
+        }
+    ],
+    "metadata": {
+        "createdAt": "2025-12-05T00:00:00.000Z",
+        "lastUpdated": "2025-12-05T18:00:00.000Z",
+        "totalFeatures": 45,
+        "passingFeatures": 45
+    }
+}

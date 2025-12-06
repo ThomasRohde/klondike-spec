@@ -1,0 +1,133 @@
+.settings-panel {
+    position: relative;
+}
+
+.settings-panel__toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.settings-panel__toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.settings-panel__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+}
+
+.settings-panel__dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: #2d3748;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 220px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+.settings-panel__dropdown h3 {
+    margin: 0 0 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.settings-panel__section {
+    margin-bottom: 16px;
+}
+
+.settings-panel__label {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.settings-panel__options {
+    display: flex;
+    gap: 8px;
+}
+
+.settings-panel__option {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.settings-panel__option:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.settings-panel__option--active {
+    background: #38a169;
+    border-color: #38a169;
+}
+
+.settings-panel__toggle-button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.settings-panel__toggle-button--active {
+    background: #38a169;
+    border-color: #38a169;
+}
+
+.settings-panel__hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+.settings-panel__links {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.settings-panel__link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.settings-panel__link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
