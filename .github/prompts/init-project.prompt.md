@@ -117,48 +117,98 @@ Generate **at least 20 features** covering:
 
 ### 4. Create Init Script
 
+Create init scripts that start the dev server **in the background** so the agent doesn't stall waiting for the server process.
+
 **For Unix (`init.sh`)**:
 ```bash
 #!/bin/bash
 set -e
 
+DEV_PORT=3000  # Adjust for your project
+
 echo "🚀 Initializing development environment..."
 
-# Install dependencies
-# <package-manager-install-command>
+# Kill any stale dev servers
+if command -v lsof &> /dev/null; then
+    STALE_PID=$(lsof -ti:$DEV_PORT 2>/dev/null || true)
+    if [ -n "$STALE_PID" ]; then
+        kill -9 $STALE_PID 2>/dev/null || true
+    fi
+fi
 
-# Start development server (background)
-# <dev-server-command> &
+# Install dependencies
+npm install  # or pip install -r requirements.txt, etc.
+
+# Start dev server in BACKGROUND (critical for agent workflows)
+npm run dev > .dev-server.log 2>&1 &
+DEV_PID=$!
+echo $DEV_PID > .dev-server.pid
 
 # Wait for server to be ready
-# sleep 3
+MAX_ATTEMPTS=30
+ATTEMPT=0
+while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+    if curl -s -o /dev/null "http://localhost:$DEV_PORT" 2>/dev/null; then
+        echo "✅ Server ready on port $DEV_PORT (PID: $DEV_PID)"
+        exit 0
+    fi
+    sleep 1
+    ATTEMPT=$((ATTEMPT + 1))
+done
 
-# Basic health check
-# curl -f http://localhost:3000/health || exit 1
-
-echo "✅ Environment ready!"
+echo "❌ Server failed to start"
+exit 1
 ```
 
 **For Windows (`init.ps1`)**:
 ```powershell
 $ErrorActionPreference = "Stop"
 
+$DEV_PORT = 3000  # Adjust for your project
+
 Write-Host "🚀 Initializing development environment..." -ForegroundColor Cyan
 
+# Kill any stale dev servers
+$staleProcesses = Get-NetTCPConnection -LocalPort $DEV_PORT -ErrorAction SilentlyContinue |
+    Select-Object -ExpandProperty OwningProcess -Unique
+if ($staleProcesses) {
+    foreach ($pid in $staleProcesses) {
+        Stop-Process -Id $pid -Force -ErrorAction SilentlyContinue
+    }
+}
+
 # Install dependencies
-# <package-manager-install-command>
+npm install  # or pip install -r requirements.txt, etc.
 
-# Start development server (background)
-# Start-Process -NoNewWindow <dev-server-command>
+# Start dev server in BACKGROUND using Start-Job (critical for agent workflows)
+$devJob = Start-Job -ScriptBlock {
+    Set-Location $using:PWD
+    npm run dev 2>&1
+}
 
-# Wait for server
-# Start-Sleep -Seconds 3
+# Wait for server to be ready
+$maxAttempts = 30
+$attempt = 0
+while ($attempt -lt $maxAttempts) {
+    Start-Sleep -Seconds 1
+    $attempt++
+    $conn = Test-NetConnection -ComputerName localhost -Port $DEV_PORT -WarningAction SilentlyContinue
+    if ($conn.TcpTestSucceeded) {
+        Write-Host "✅ Server ready on port $DEV_PORT (Job ID: $($devJob.Id))" -ForegroundColor Green
+        exit 0
+    }
+}
 
-# Basic health check
-# Invoke-WebRequest -Uri "http://localhost:3000/health" -UseBasicParsing
-
-Write-Host "✅ Environment ready!" -ForegroundColor Green
+Write-Host "❌ Server failed to start" -ForegroundColor Red
+exit 1
 ```
+
+**Key points:**
+- Server runs in background (`&` in bash, `Start-Job` in PowerShell)
+- Output redirected to log file for later debugging
+- PID saved for cleanup
+- Health check waits for server to be ready
+- Script exits after health check passes (doesn't block on server)
 
 ### 5. Initialize Git Repository
 

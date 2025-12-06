@@ -24,7 +24,10 @@ This repository uses a **multi-context-window agent workflow** designed to maint
 ### 3. Init Script (`init.sh` / `init.ps1`)
 - **Purpose**: Reproducible environment startup
 - **Location**: Project root
-- **Must include**: Dev server startup, basic health checks
+- **Must include**: 
+  - Dev server startup **in background** (using `&` in bash, `Start-Job` in PowerShell)
+  - Health checks with timeout
+  - Clean exit after server is ready (script should NOT block waiting for server)
 
 ## Agent Behavior Rules
 

@@ -70,7 +70,7 @@ Before proceeding, validate:
 
 ### 4. Start the Environment
 
-**IMPORTANT**: The init script performs health checks. If they fail, do NOT proceed.
+**IMPORTANT**: The init script starts the dev server **in the background** and performs health checks. If the health checks fail, do NOT proceed.
 
 ```bash
 # Run the init script (it handles server startup and health checks)
@@ -81,9 +81,12 @@ The init script will:
 1. Kill any stale dev servers on the target port
 2. Install dependencies if missing
 3. Run type check, lint, and tests
-4. Start dev server in background
-5. Wait for port to be ready (health check)
+4. **Start dev server in background** (won't block the agent)
+5. Wait for port to be ready (health check with timeout)
 6. Run a minimal smoke test
+7. Exit cleanly after health check passes
+
+**Note**: The dev server continues running in the background after the script exits. This is intentional—it allows the agent to proceed with coding work without being blocked by the server process.
 
 **If init script fails:**
 - **STOP** - Do not start new features

@@ -74,7 +74,7 @@ Generate a comprehensive feature list with **at least 20 features** covering:
 Initialize with Session 1 entry.
 
 #### 1.4 Create Init Scripts
-Create `init.sh` and `init.ps1` for reproducible environment startup.
+Create `init.sh` and `init.ps1` for reproducible environment startup. **Ensure the dev server starts in the background** so the script doesn't block the agent.
 
 #### 1.5 Initialize Git & Commit
 ```bash

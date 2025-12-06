@@ -3,44 +3,70 @@
 
 $ErrorActionPreference = "Stop"  # Exit on any error
 
+# Configuration - adjust these for your project
+$DEV_PORT = 3000  # Change to match your dev server port
+
 Write-Host "🚀 Starting development environment..." -ForegroundColor Cyan
 Write-Host "================================================" -ForegroundColor Cyan
 
 # 1. Check prerequisites
 Write-Host "`n📋 Checking prerequisites..." -ForegroundColor Yellow
 
-# Example: Check Node.js version
-# if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-#     Write-Host "❌ Node.js is required but not installed" -ForegroundColor Red
-#     exit 1
-# }
-# Write-Host "   ✅ Node.js $(node -v)" -ForegroundColor Green
+# Node.js project:
+if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
+    Write-Host "❌ Node.js is required but not installed" -ForegroundColor Red
+    exit 1
+}
+Write-Host "   ✅ Node.js $(node -v)" -ForegroundColor Green
 
-# Example: Check Python version
+# Python project:
 # if (-not (Get-Command python -ErrorAction SilentlyContinue)) {
 #     Write-Host "❌ Python is required but not installed" -ForegroundColor Red
 #     exit 1
 # }
 # Write-Host "   ✅ Python $(python --version)" -ForegroundColor Green
 
-# 2. Install dependencies
+# 2. Kill any stale dev servers on target port
+Write-Host "`n🔍 Checking for stale processes on port $DEV_PORT..." -ForegroundColor Yellow
+$staleProcesses = Get-NetTCPConnection -LocalPort $DEV_PORT -ErrorAction SilentlyContinue | 
+Select-Object -ExpandProperty OwningProcess -Unique
+if ($staleProcesses) {
+    foreach ($pid in $staleProcesses) {
+        Write-Host "  Killing stale process PID: $pid" -ForegroundColor Yellow
+        Stop-Process -Id $pid -Force -ErrorAction SilentlyContinue
+    }
+    Start-Sleep -Seconds 1
+    Write-Host "   ✅ Stale processes cleaned up" -ForegroundColor Green
+}
+else {
+    Write-Host "   ✅ No stale processes found" -ForegroundColor Green
+}
+
+# 3. Install dependencies
 Write-Host "`n📦 Installing dependencies..." -ForegroundColor Yellow
 
-# Example for Node.js projects:
-# npm install
+# Node.js project:
+if (-not (Test-Path "node_modules")) {
+    npm install
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "❌ Dependency installation failed!" -ForegroundColor Red
+        exit 1
+    }
+}
+else {
+    Write-Host "   ✅ Dependencies already installed" -ForegroundColor Green
+}
 
-# Example for Python projects:
+# Python project:
 # pip install -r requirements.txt
 
-# Example for .NET projects:
+# .NET project:
 # dotnet restore
 
-Write-Host "   ✅ Dependencies installed" -ForegroundColor Green
-
-# 3. Set up environment variables (if needed)
+# 4. Set up environment variables (if needed)
 Write-Host "`n🔧 Setting up environment..." -ForegroundColor Yellow
 
-# Example: Load .env file
+# Load .env file if present
 # if (Test-Path .env) {
 #     Get-Content .env | ForEach-Object {
 #         if ($_ -match '^([^#][^=]+)=(.*)$') {
@@ -50,45 +76,78 @@ Write-Host "`n🔧 Setting up environment..." -ForegroundColor Yellow
 #     Write-Host "   ✅ Environment variables loaded from .env" -ForegroundColor Green
 # }
 
-# 4. Start development server (background)
-Write-Host "`n🖥️  Starting development server..." -ForegroundColor Yellow
+# 5. Start development server in BACKGROUND using Start-Job
+# IMPORTANT: Using Start-Job ensures the script doesn't block waiting for the server
+Write-Host "`n🖥️  Starting development server in background..." -ForegroundColor Yellow
 
-# Example for Node.js:
-# $serverProcess = Start-Process -NoNewWindow -PassThru npm -ArgumentList "run", "dev"
-# $serverProcess.Id | Out-File .dev-server.pid
+# Node.js project (using Start-Job for non-blocking background execution):
+$devJob = Start-Job -ScriptBlock {
+    Set-Location $using:PWD
+    npm run dev 2>&1
+}
+Write-Host "   Started dev server as background job (Job ID: $($devJob.Id))" -ForegroundColor Gray
 
-# Example for Python:
-# $serverProcess = Start-Process -NoNewWindow -PassThru python -ArgumentList "app.py"
-# $serverProcess.Id | Out-File .dev-server.pid
-
-# Example for .NET:
-# $serverProcess = Start-Process -NoNewWindow -PassThru dotnet -ArgumentList "run"
-# $serverProcess.Id | Out-File .dev-server.pid
-
-# 5. Wait for server to be ready
-Write-Host "   ⏳ Waiting for server to start..." -ForegroundColor Gray
-Start-Sleep -Seconds 3
-
-# 6. Health check
-Write-Host "`n🏥 Running health check..." -ForegroundColor Yellow
-
-# Example: Check if HTTP endpoint responds
-# try {
-#     $response = Invoke-WebRequest -Uri "http://localhost:3000/health" -UseBasicParsing -TimeoutSec 5
-#     if ($response.StatusCode -eq 200) {
-#         Write-Host "   ✅ Health check passed" -ForegroundColor Green
-#     }
-# } catch {
-#     Write-Host "   ❌ Health check failed: $_" -ForegroundColor Red
-#     exit 1
+# Python project:
+# $devJob = Start-Job -ScriptBlock {
+#     Set-Location $using:PWD
+#     python app.py 2>&1
 # }
 
-# 7. Success message
+# .NET project:
+# $devJob = Start-Job -ScriptBlock {
+#     Set-Location $using:PWD
+#     dotnet run 2>&1
+# }
+
+# 6. Wait for server to be ready (with timeout)
+Write-Host "`n⏳ Waiting for server to be ready..." -ForegroundColor Yellow
+$maxAttempts = 30
+$attempt = 0
+$serverReady = $false
+
+while ($attempt -lt $maxAttempts -and -not $serverReady) {
+    Start-Sleep -Seconds 1
+    $attempt++
+    try {
+        $connection = Test-NetConnection -ComputerName localhost -Port $DEV_PORT -WarningAction SilentlyContinue
+        if ($connection.TcpTestSucceeded) {
+            $serverReady = $true
+        }
+    }
+    catch {
+        # Continue waiting
+    }
+}
+
+if (-not $serverReady) {
+    Write-Host "❌ Server failed to start within 30 seconds!" -ForegroundColor Red
+    Write-Host "   Checking job output..." -ForegroundColor Yellow
+    Receive-Job -Id $devJob.Id
+    exit 1
+}
+
+Write-Host "   ✅ Dev server ready on port $DEV_PORT" -ForegroundColor Green
+
+# 7. Health check - verify the app responds
+Write-Host "`n🏥 Running health check..." -ForegroundColor Yellow
+try {
+    $response = Invoke-WebRequest -Uri "http://localhost:$DEV_PORT" -UseBasicParsing -TimeoutSec 10
+    if ($response.StatusCode -eq 200) {
+        Write-Host "   ✅ Health check passed (HTTP 200)" -ForegroundColor Green
+    }
+}
+catch {
+    Write-Host "   ❌ Health check failed: $_" -ForegroundColor Red
+    exit 1
+}
+
+# 8. Success message
 Write-Host "`n================================================" -ForegroundColor Cyan
 Write-Host "✅ Environment ready!" -ForegroundColor Green
 Write-Host ""
-Write-Host "📍 Server running at: http://localhost:3000" -ForegroundColor White
-Write-Host "📖 To stop: Stop-Process -Id (Get-Content .dev-server.pid)" -ForegroundColor Gray
+Write-Host "📍 Server running at: http://localhost:$DEV_PORT" -ForegroundColor White
+Write-Host "📖 To view output: Receive-Job -Id $($devJob.Id)" -ForegroundColor Gray
+Write-Host "📖 To stop: Stop-Job -Id $($devJob.Id); Remove-Job -Id $($devJob.Id)" -ForegroundColor Gray
 Write-Host ""
-Write-Host "🎯 Ready for coding session. Run /session-start" -ForegroundColor Cyan
+Write-Host "🎯 Ready for coding session." -ForegroundColor Cyan
 Write-Host "================================================" -ForegroundColor Cyan
