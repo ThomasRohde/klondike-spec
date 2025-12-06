@@ -29,7 +29,7 @@ Anthropic discovered that AI agents fail in predictable ways when working on com
 
 Their solution? Structured artifacts that bridge context windows—progress files, feature registries, and session rituals.
 
-We adapted these ideas into a **prompting framework for GitHub Copilot** in VS Code. Then, to prove it works, we used the framework to build a complete **Klondike Solitaire game**—31 features, all verified, across multiple agent sessions.
+We adapted these ideas into a **prompting framework for GitHub Copilot** in VS Code. Then, to prove it works, we used the framework to build a complete **Klondike Solitaire game**—45 features, all verified, across multiple agent sessions.
 
 **The result: Klondike-Spec**—both the framework and its proof-of-concept in one repository.
 
@@ -154,7 +154,8 @@ This creates:
 .github/
 ├── copilot-instructions.md       # Auto-applied agent behavior rules
 ├── prompts/
-│   ├── init-project.prompt.md    # Initialize new projects
+│   ├── init-project.prompt.md    # Initialize new projects (scaffold only)
+│   ├── init-and-build.prompt.md  # Scaffold AND implement features
 │   ├── session-start.prompt.md   # Begin coding sessions
 │   ├── session-end.prompt.md     # End with clean handoff
 │   ├── verify-feature.prompt.md  # E2E feature verification
@@ -231,14 +232,15 @@ This repository includes a fully-functional Klondike Solitaire game, built entir
 
 **🎮 [Play the live demo →](https://thomasrohde.github.io/klondike-spec/)**
 
-### Features Implemented (39/45 ✅)
+### Features Implemented (45/45 ✅)
 
 | Category | Features |
 |----------|----------|
 | **Core Game** | Card/deck models, shuffling, dealing, tableau moves, foundation moves, auto-flip, win detection, undo, move counter, timer |
-| **UI** | Professional SVG cards, card backs, responsive layout, drag-and-drop, click-to-move, animations, settings panel, PWA install prompt, offline indicator |
-| **Infrastructure** | Vite + React + TypeScript, Zustand state, localStorage persistence, React Router, PWA with offline support, error boundary, GitHub Pages deployment |
-| **Testing** | Vitest unit tests, Playwright E2E tests |
+| **UI** | Professional SVG cards, card backs, responsive layout, drag-and-drop, click-to-move, animations, settings panel, PWA install prompt, offline indicator, update notification, standalone mode adjustments |
+| **Infrastructure** | Vite + React + TypeScript, Zustand state, localStorage persistence, React Router, PWA with offline support, error boundary, GitHub Pages deployment, app shortcuts, iOS PWA support, service worker lifecycle |
+| **Testing** | Vitest unit tests, Playwright E2E tests, deployment verification |
+| **Documentation** | README with deployment instructions |
 
 ### Deployment
 
@@ -272,13 +274,13 @@ npm run build    # Production build
 
 The framework requires these settings in `.vscode/settings.json`:
 
-```json
+```jsonc
 {
   "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-  "chat.promptFiles": true,
   "chat.instructionsFilesLocations": {
     ".github/instructions": true
   },
+  "chat.promptFiles": true,
   "chat.promptFilesLocations": {
     ".github/prompts": true
   }
@@ -295,9 +297,11 @@ These are included when you copy the `.vscode/` folder.
 
 | ✅ Allowed | ❌ Forbidden |
 |-----------|-------------|
-| Change `passes`: `false` → `true` | Delete features |
-| Set `verifiedAt` timestamp | Edit descriptions or criteria |
-| Set `verifiedBy` identifier | Mark passing without E2E verification |
+| Change `status`: `not-started` → `in-progress` → `verified` | Delete features |
+| Change `passes`: `false` → `true` | Edit descriptions or criteria |
+| Set `verifiedAt` timestamp | Mark passing without E2E verification |
+| Set `verifiedBy` identifier | |
+| Set `evidenceLinks`, `blockedBy`, `notes` | |
 
 ### agent-progress.md — Append Only
 
