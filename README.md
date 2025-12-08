@@ -176,6 +176,53 @@ This creates:
 
 ---
 
+## 🐍 Programmatic CLI Support
+
+For teams wanting **programmatic artifact management** beyond VS Code prompts, the [Klondike Spec CLI](https://github.com/ThomasRohde/klondike-spec-cli) provides a powerful command-line interface.
+
+### Installation
+
+```bash
+# Using uv (fastest)
+uv tool install klondike-spec-cli
+
+# Using pipx
+pipx install klondike-spec-cli
+```
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Session Management** | `klondike session start/end` — Automated session rituals with validation |
+| **Feature Tracking** | `klondike feature add/start/verify` — Programmatic feature lifecycle |
+| **Artifact Validation** | `klondike validate` — Check artifact integrity and consistency |
+| **AI Agent Integration** | `klondike mcp serve` — MCP server for AI agent tooling |
+| **Import/Export** | `klondike import-features/export-features` — YAML/JSON interop |
+| **Progress Reports** | `klondike status/report` — Project health and next priorities |
+
+### Relationship to This Framework
+
+- **This repository** provides the **prompting framework** — copilot instructions, slash commands, templates
+- **The CLI** provides **artifact manipulation** — programmatic management of features.json and session logs
+
+Together, they enable sophisticated multi-session agent workflows that maintain coherence across context window resets.
+
+```bash
+# Example workflow
+klondike init my-project
+klondike feature add -d "User authentication" -c core -p 1 \
+  --criteria "Login works,Sessions persist,Logout clears state"
+klondike session start --focus "F001 - User authentication"
+# ... coding with Copilot ...
+klondike feature verify F001 --evidence "All tests pass"
+klondike session end --summary "Auth complete"
+```
+
+> 📖 See the [Klondike Spec CLI documentation](https://thomasrohde.github.io/klondike-docs/) for complete usage details.
+
+---
+
 ## 💬 Prompt Commands
 
 | Command | What It Does |
@@ -331,6 +378,10 @@ It's the same discipline that makes engineering teams effective—now applied to
 ---
 
 ## 🔗 References
+
+### Related Projects
+- [Klondike Spec CLI](https://github.com/ThomasRohde/klondike-spec-cli) — Programmatic CLI for artifact management (Python)
+- [Pith](https://github.com/ThomasRohde/pith) — Agent-native CLI framework with progressive discovery
 
 ### Anthropic Research
 - [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — The inspiration for this framework
